@@ -76,7 +76,7 @@ PRODUCT_PACKAGES += \
     libhidltransport \
     libhwbinder
 
-# PRODUCT_COPY_FILES += \
+PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/manifest.xml:$(TARGET_COPY_OUT_PRODUCT)/vendor_overlay/$(PRODUCT_TARGET_VNDK_VERSION)/etc/vintf/manifest.xml
 
 # IMS
@@ -94,6 +94,13 @@ PRODUCT_PACKAGES += \
     lineage.livedisplay@2.0-service-sdm
 endif
 
+# Power
+PRODUCT_PACKAGES += \
+    android.hardware.power-service.realme-sdm710
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/powerhint.json:$(TARGET_COPY_OUT_SYSTEM)/etc/powerhint.json
+
 # Media
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media_profiles_vendor.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/media_profiles_vendor.xml
@@ -110,7 +117,9 @@ PRODUCT_PACKAGES += \
 
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
-    $(LOCAL_PATH)
+    $(LOCAL_PATH) \
+    hardware/google/interfaces \
+    hardware/google/pixel
 
 # System properties
 -include $(LOCAL_PATH)/product_prop.mk
